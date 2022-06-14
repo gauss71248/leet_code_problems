@@ -1,3 +1,6 @@
+from tabnanny import check
+
+
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         def flatten(l):
@@ -14,5 +17,7 @@ class Solution:
                 return b
             else:
                 return check_board(s[1:],check_line(s[0]) and b)
-        return check_board(board, True) and check_board(convert_to_small_sudokus(board), True)
+        def transpose(l):
+            return list(map(list, zip(*l)))
+        return check_board(board, True) and check_board(transpose(board), True) and check_board(convert_to_small_sudokus(board), True)
             
